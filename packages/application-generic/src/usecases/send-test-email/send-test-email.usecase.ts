@@ -27,14 +27,14 @@ export class SendTestEmail {
     private selectIntegration: SelectIntegration,
     private analyticsService: AnalyticsService,
     protected getTeleflowProviderCredentials: GetTeleflowProviderCredentials,
-    protected moduleRef: ModuleRef
+    protected moduleRef: ModuleRef,
   ) {}
 
   @InstrumentUsecase()
   public async execute(command: SendTestEmailCommand) {
     const mailFactory = new MailFactory();
     const organization = await this.organizationRepository.findById(
-      command.organizationId
+      command.organizationId,
     );
     if (!organization) throw new NotFoundException('Organization not found');
 
@@ -51,7 +51,7 @@ export class SendTestEmail {
         channelType: ChannelTypeEnum.EMAIL,
         userId: command.userId,
         filterData: {},
-      })
+      }),
     );
 
     if (!integration) {
@@ -59,13 +59,14 @@ export class SendTestEmail {
     }
 
     if (integration.providerId === EmailProviderIdEnum.Teleflow) {
-      integration.credentials = await this.getTeleflowProviderCredentials.execute({
-        channelType: integration.channel,
-        providerId: integration.providerId,
-        environmentId: integration._environmentId,
-        organizationId: integration._organizationId,
-        userId: command.userId,
-      });
+      integration.credentials =
+        await this.getTeleflowProviderCredentials.execute({
+          channelType: integration.channel,
+          providerId: integration.providerId,
+          environmentId: integration._environmentId,
+          organizationId: integration._organizationId,
+          userId: command.userId,
+        });
     }
 
     const { html, subject } = await this.compileEmailTemplateUsecase.execute(
@@ -81,7 +82,7 @@ export class SendTestEmail {
           },
           subscriber: this.getSystemVariables('subscriber', command),
         },
-      })
+      }),
     );
 
     if (email && integration) {
@@ -105,7 +106,7 @@ export class SendTestEmail {
     integration: IntegrationEntity,
     mailData: IEmailOptions,
     mailFactory: MailFactory,
-    command: SendTestEmailCommand
+    command: SendTestEmailCommand,
   ) {
     const { providerId } = integration;
 
@@ -120,7 +121,7 @@ export class SendTestEmail {
           _environment: command.environmentId,
           channel: ChannelTypeEnum.EMAIL,
           providerId,
-        }
+        },
       );
     } catch (error) {
       throw new ApiException(`Unexpected provider error`);
@@ -129,7 +130,7 @@ export class SendTestEmail {
 
   private getSystemVariables(
     variableType: 'subscriber' | 'step' | 'branding',
-    command: SendTestEmailCommand
+    command: SendTestEmailCommand,
   ) {
     const variables = {};
     for (const variable in command.payload) {

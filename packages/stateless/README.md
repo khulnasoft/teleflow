@@ -20,7 +20,7 @@ await teleflow.registerProvider(
   new SendgridEmailProvider({
     apiKey: process.env.SENDGRID_API_KEY,
     from: 'sender@mail.com',
-  })
+  }),
 );
 
 const passwordResetTemplate = await teleflow.registerTemplate({

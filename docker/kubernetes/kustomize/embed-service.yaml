@@ -9,7 +9,7 @@ metadata:
   name: embed
 spec:
   ports:
-    - name: "4701"
+    - name: '4701'
       port: 4701
       targetPort: 4701
   selector:

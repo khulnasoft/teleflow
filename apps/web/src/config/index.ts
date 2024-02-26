@@ -34,4 +34,5 @@ export {
   FEATURE_FLAGS,
 };
 
-export const IS_EU_ENV = (ENV === 'production' || ENV === 'prod') && API_ROOT.includes('eu.api.teleflow.khulnasoft.com');
+export const IS_EU_ENV =
+  (ENV === 'production' || ENV === 'prod') && API_ROOT.includes('eu.api.teleflow.khulnasoft.com');

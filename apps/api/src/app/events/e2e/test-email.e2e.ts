@@ -58,7 +58,10 @@ describe('Events - Test email - /v1/events/test/email (POST)', function () {
   };
 
   const reachTeleflowProviderLimit = async () => {
-    const MAX_TELEFLOW_INTEGRATION_MAIL_REQUESTS = parseInt(process.env.MAX_TELEFLOW_INTEGRATION_MAIL_REQUESTS || '300', 10);
+    const MAX_TELEFLOW_INTEGRATION_MAIL_REQUESTS = parseInt(
+      process.env.MAX_TELEFLOW_INTEGRATION_MAIL_REQUESTS || '300',
+      10
+    );
     const messageRepository = new MessageRepository();
     for (let i = 0; i < MAX_TELEFLOW_INTEGRATION_MAIL_REQUESTS; i++) {
       await messageRepository.create({

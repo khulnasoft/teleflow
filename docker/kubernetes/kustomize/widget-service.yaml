@@ -9,7 +9,7 @@ metadata:
   name: widget
 spec:
   ports:
-    - name: "4500"
+    - name: '4500'
       port: 4500
       targetPort: 4500
   selector:

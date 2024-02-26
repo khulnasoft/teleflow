@@ -34,7 +34,10 @@ const ALLOWED_METHODS = ['post', 'patch'];
 
 @Injectable()
 export class IdempotencyInterceptor implements NestInterceptor {
-  constructor(private readonly cacheService: CacheService, private getFeatureFlag: GetFeatureFlag) {}
+  constructor(
+    private readonly cacheService: CacheService,
+    private getFeatureFlag: GetFeatureFlag
+  ) {}
 
   protected async isEnabled(context: ExecutionContext): Promise<boolean> {
     const isAllowedAuthScheme = this.isAllowedAuthScheme(context);

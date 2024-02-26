@@ -37,15 +37,18 @@ $ npm run start:api
 ## Test
 
 ### Unit Tests
+
 ```bash
 # unit tests
 $ npm run test
 ```
 
 ### E2E tests
+
 See the docs for [Running on Local Machine - API Tests](https://docs.teleflow.khulnasoft.com/community/run-in-local-machine#api).
 
 ## Migrations
+
 Database migrations are included for features that have a hard dependency on specific data being available on database entities. These migrations are run by both Teleflow Cloud and Teleflow Self-Hosted users to support new feature releases.
 
 ### How to Run
