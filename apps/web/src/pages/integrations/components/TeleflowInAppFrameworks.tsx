@@ -58,7 +58,11 @@ const frameworks = [
   { icon: IframeLogo, name: 'iFrame', frameworkEnum: FrameworkEnum.JS },
 ];
 
-export const TeleflowInAppFrameworks = ({ onFrameworkClick }: { onFrameworkClick: (framework: FrameworkEnum) => void }) => {
+export const TeleflowInAppFrameworks = ({
+  onFrameworkClick,
+}: {
+  onFrameworkClick: (framework: FrameworkEnum) => void;
+}) => {
   return (
     <TeleflowInAppFrameworksHolder data-test-id="teleflow-in-app-frameworks">
       <Text>Integrate In-App using a framework below</Text>
