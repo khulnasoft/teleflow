@@ -8,7 +8,8 @@ import { ApiException } from '../../utils/exceptions';
 export class GetTeleflowLayout {
   async execute(command: GetTeleflowLayoutCommand): Promise<string> {
     const template = await this.loadTemplateContent('layout.handlebars');
-    if (!template) throw new ApiException('Teleflow default template not found');
+    if (!template)
+      throw new ApiException('Teleflow default template not found');
 
     return template;
   }
