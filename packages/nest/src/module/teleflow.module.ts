@@ -1,6 +1,9 @@
 import { DynamicModule, Global, Module } from '@nestjs/common';
 import { ITeleflowModuleAsyncOptions, ITeleflowOptions } from '../interfaces';
-import { createAsyncTeleflowProviders, createTeleflowProviders } from '../providers';
+import {
+  createAsyncTeleflowProviders,
+  createTeleflowProviders,
+} from '../providers';
 
 @Global()
 @Module({})
@@ -15,7 +18,9 @@ export class TeleflowModule {
     };
   }
 
-  public static forRootAsync(options: ITeleflowModuleAsyncOptions): DynamicModule {
+  public static forRootAsync(
+    options: ITeleflowModuleAsyncOptions,
+  ): DynamicModule {
     const providers = createAsyncTeleflowProviders(options);
 
     return {
