@@ -1,5 +1,9 @@
 import { TwilioSmsProvider } from '@teleflow/twilio';
-import { ChannelTypeEnum, ICredentials, SmsProviderIdEnum } from '@teleflow/shared';
+import {
+  ChannelTypeEnum,
+  ICredentials,
+  SmsProviderIdEnum,
+} from '@teleflow/shared';
 import { BaseSmsHandler } from './base.handler';
 
 export class TeleflowSmsHandler extends BaseSmsHandler {
