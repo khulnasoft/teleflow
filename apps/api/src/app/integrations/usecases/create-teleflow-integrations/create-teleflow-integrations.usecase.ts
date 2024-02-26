@@ -9,7 +9,10 @@ import { ChannelTypeEnum, EmailProviderIdEnum, SmsProviderIdEnum } from '@telefl
 
 @Injectable()
 export class CreateTeleflowIntegrations {
-  constructor(private createIntegration: CreateIntegration, private integrationRepository: IntegrationRepository) {}
+  constructor(
+    private createIntegration: CreateIntegration,
+    private integrationRepository: IntegrationRepository
+  ) {}
 
   private async createEmailIntegration(command: CreateTeleflowIntegrationsCommand) {
     if (!areTeleflowEmailCredentialsSet()) {
