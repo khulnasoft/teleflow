@@ -1,6 +1,11 @@
 import { useMantineColorScheme } from '@mantine/core';
 import { IUserEntity, IMessage, MessageActionStatusEnum, ButtonTypeEnum } from '@teleflow/shared';
-import { NotificationBell, TeleflowProvider, PopoverNotificationCenter, useUpdateAction } from '@teleflow/notification-center';
+import {
+  NotificationBell,
+  TeleflowProvider,
+  PopoverNotificationCenter,
+  useUpdateAction,
+} from '@teleflow/notification-center';
 
 import { API_ROOT, APP_ID, WS_URL, IS_EU_ENV } from '../../../config';
 import { useEnvController } from '../../../hooks';

@@ -73,7 +73,7 @@ export class HeadlessService {
       this.api.initializeSession(
         this.options.applicationIdentifier,
         this.options.subscriberId,
-        this.options.subscriberHash
+        this.options.subscriberHash,
       ),
   };
 
@@ -120,7 +120,8 @@ export class HeadlessService {
   };
 
   constructor(private options: IHeadlessServiceOptions) {
-    const backendUrl = options.backendUrl ?? 'https://api.teleflow.khulnasoft.com';
+    const backendUrl =
+      options.backendUrl ?? 'https://api.teleflow.khulnasoft.com';
     const token = getToken();
     this.api = new ApiService(backendUrl);
     this.applyToken(token);
@@ -163,7 +164,8 @@ export class HeadlessService {
   }
 
   private initializeSocket(token: string | null) {
-    const socketUrl = this.options.socketUrl ?? 'https://ws.teleflow.khulnasoft.com';
+    const socketUrl =
+      this.options.socketUrl ?? 'https://ws.teleflow.khulnasoft.com';
 
     if (this.socket) {
       this.socket.disconnect();
@@ -187,7 +189,7 @@ export class HeadlessService {
 
   private callFetchListener = <T>(
     result: QueryObserverResult<T>,
-    listener: (result: FetchResult<T>) => void
+    listener: (result: FetchResult<T>) => void,
   ) =>
     listener({
       data: result.data,
@@ -200,7 +202,7 @@ export class HeadlessService {
 
   private callFetchListenerWithPagination = <T>(
     result: QueryObserverResult<IPaginatedResponse<T>>,
-    listener: (result: FetchResult<IPaginatedResponse<T>>) => void
+    listener: (result: FetchResult<IPaginatedResponse<T>>) => void,
   ) =>
     listener({
       data: result.data,
@@ -214,10 +216,10 @@ export class HeadlessService {
   private callUpdateListener = <
     TData = unknown,
     TError = unknown,
-    TVariables = unknown
+    TVariables = unknown,
   >(
     result: MutationObserverResult<TData, TError, TVariables>,
-    listener: (result: UpdateResult<TData, TError, TVariables>) => void
+    listener: (result: UpdateResult<TData, TError, TVariables>) => void,
   ) =>
     listener({
       data: result.data,
@@ -342,7 +344,7 @@ export class HeadlessService {
             });
             listener(data.message);
           }
-        }
+        },
       );
     }
 
@@ -367,11 +369,11 @@ export class HeadlessService {
           if (Number.isInteger(data?.unseenCount)) {
             this.queryClient.setQueryData<{ count: number }>(
               UNSEEN_COUNT_QUERY_KEY,
-              (oldData) => ({ count: data?.unseenCount ?? oldData.count })
+              (oldData) => ({ count: data?.unseenCount ?? oldData.count }),
             );
             listener(data.unseenCount);
           }
-        }
+        },
       );
     }
 
@@ -396,11 +398,11 @@ export class HeadlessService {
           if (Number.isInteger(data?.unreadCount)) {
             this.queryClient.setQueryData<{ count: number }>(
               UNREAD_COUNT_QUERY_KEY,
-              (oldData) => ({ count: data?.unreadCount ?? oldData.count })
+              (oldData) => ({ count: data?.unreadCount ?? oldData.count }),
             );
             listener(data.unreadCount);
           }
-        }
+        },
       );
     }
 
@@ -504,7 +506,7 @@ export class HeadlessService {
         IUserPreferenceSettings,
         unknown,
         IUpdateUserPreferencesVariables
-      >
+      >,
     ) => void;
     onSuccess?: (settings: IUserPreferenceSettings) => void;
     onError?: (error: unknown) => void;
@@ -521,7 +523,7 @@ export class HeadlessService {
           this.api.updateSubscriberPreference(
             variables.templateId,
             variables.channelType,
-            variables.checked
+            variables.checked,
           ),
         onSuccess: (data) => {
           this.queryClient.setQueryData<IUserPreferenceSettings[]>(
@@ -533,7 +535,7 @@ export class HeadlessService {
                 }
 
                 return setting;
-              })
+              }),
           );
         },
       },
@@ -569,7 +571,7 @@ export class HeadlessService {
         IUserGlobalPreferenceSettings,
         unknown,
         IUpdateUserGlobalPreferencesVariables
-      >
+      >,
     ) => void;
     onSuccess?: (settings: IUserGlobalPreferenceSettings) => void;
     onError?: (error: unknown) => void;
@@ -585,12 +587,12 @@ export class HeadlessService {
         mutationFn: (variables) =>
           this.api.updateSubscriberGlobalPreference(
             variables.preferences,
-            variables.enabled
+            variables.enabled,
           ),
         onSuccess: (data) => {
           this.queryClient.setQueryData<IUserGlobalPreferenceSettings[]>(
             USER_GLOBAL_PREFERENCES_QUERY_KEY,
-            () => [data]
+            () => [data],
           );
         },
       },
@@ -620,7 +622,7 @@ export class HeadlessService {
   }: {
     messageId: IMessageId;
     listener: (
-      result: UpdateResult<IMessage[], unknown, { messageId: IMessageId }>
+      result: UpdateResult<IMessage[], unknown, { messageId: IMessageId }>,
     ) => void;
     onSuccess?: (message: IMessage[]) => void;
     onError?: (error: unknown) => void;
@@ -670,7 +672,7 @@ export class HeadlessService {
   }: {
     messageId: IMessageId;
     listener: (
-      result: UpdateResult<IMessage[], unknown, { messageId: IMessageId }>
+      result: UpdateResult<IMessage[], unknown, { messageId: IMessageId }>,
     ) => void;
     onSuccess?: (message: IMessage[]) => void;
     onError?: (error: unknown) => void;
@@ -721,7 +723,7 @@ export class HeadlessService {
     messageId: IMessageId;
     mark: { seen?: boolean; read?: boolean };
     listener: (
-      result: UpdateResult<IMessage[], unknown, { messageId: IMessageId }>
+      result: UpdateResult<IMessage[], unknown, { messageId: IMessageId }>,
     ) => void;
     onSuccess?: (message: IMessage[]) => void;
     onError?: (error: unknown) => void;
@@ -768,7 +770,7 @@ export class HeadlessService {
   }: {
     messageId: string;
     listener: (
-      result: UpdateResult<IMessage, unknown, { messageId: string }>
+      result: UpdateResult<IMessage, unknown, { messageId: string }>,
     ) => void;
     onSuccess?: (message: IMessage) => void;
     onError?: (error: unknown) => void;
@@ -814,7 +816,7 @@ export class HeadlessService {
   }: {
     messageIds: string[];
     listener: (
-      result: UpdateResult<void, unknown, { messageIds: string[] }>
+      result: UpdateResult<void, unknown, { messageIds: string[] }>,
     ) => void;
     onSuccess?: (obj: void) => void;
     onError?: (error: unknown) => void;
@@ -867,7 +869,7 @@ export class HeadlessService {
     status: IUpdateActionVariables['status'];
     payload?: IUpdateActionVariables['payload'];
     listener: (
-      result: UpdateResult<IMessage, unknown, IUpdateActionVariables>
+      result: UpdateResult<IMessage, unknown, IUpdateActionVariables>,
     ) => void;
     onSuccess?: (data: IMessage) => void;
     onError?: (error: unknown) => void;
@@ -885,7 +887,7 @@ export class HeadlessService {
             variables.messageId,
             variables.actionButtonType,
             variables.status,
-            variables.payload
+            variables.payload,
           ),
         onSuccess: (data) => {
           this.queryClient.refetchQueries(NOTIFICATIONS_QUERY_KEY, {

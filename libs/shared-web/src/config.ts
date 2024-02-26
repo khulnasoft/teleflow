@@ -26,7 +26,10 @@ export const SENTRY_DSN = window._env_.REACT_APP_SENTRY_DSN || process.env.REACT
 
 export const ENV = window._env_.REACT_APP_ENVIRONMENT || process.env.REACT_APP_ENVIRONMENT;
 
-const blueprintApiUrlByEnv = ENV === 'production' || ENV === 'prod' ? 'https://api.teleflow.khulnasoft.com' : 'https://dev.api.teleflow.khulnasoft.com';
+const blueprintApiUrlByEnv =
+  ENV === 'production' || ENV === 'prod'
+    ? 'https://api.teleflow.khulnasoft.com'
+    : 'https://dev.api.teleflow.khulnasoft.com';
 
 export const BLUEPRINTS_API_URL =
   window._env_.REACT_APP_BLUEPRINTS_API_URL || isCypress
@@ -54,14 +57,19 @@ export const WEBHOOK_URL = isCypress
   : window._env_.REACT_APP_WEBHOOK_URL || process.env.REACT_APP_WEBHOOK_URL || 'http://localhost:3003';
 
 export const MAIL_SERVER_DOMAIN =
-  window._env_.REACT_APP_MAIL_SERVER_DOMAIN || process.env.REACT_APP_MAIL_SERVER_DOMAIN || 'dev.inbound-mail.teleflow.khulnasoft.com';
+  window._env_.REACT_APP_MAIL_SERVER_DOMAIN ||
+  process.env.REACT_APP_MAIL_SERVER_DOMAIN ||
+  'dev.inbound-mail.teleflow.khulnasoft.com';
 
 export const LAUNCH_DARKLY_CLIENT_SIDE_ID =
   window._env_.REACT_APP_LAUNCH_DARKLY_CLIENT_SIDE_ID || process.env.REACT_APP_LAUNCH_DARKLY_CLIENT_SIDE_ID;
 
-export const FEATURE_FLAGS = Object.values(FeatureFlagsKeysEnum).reduce((acc, key) => {
-  const defaultValue = isCypress ? true : false;
-  acc[key] = window._env_[key] || process.env[key] || defaultValue;
+export const FEATURE_FLAGS = Object.values(FeatureFlagsKeysEnum).reduce(
+  (acc, key) => {
+    const defaultValue = isCypress ? true : false;
+    acc[key] = window._env_[key] || process.env[key] || defaultValue;
 
-  return acc;
-}, {} as Record<FeatureFlagsKeysEnum, string | undefined>);
+    return acc;
+  },
+  {} as Record<FeatureFlagsKeysEnum, string | undefined>
+);

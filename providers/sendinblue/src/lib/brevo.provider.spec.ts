@@ -133,7 +133,7 @@ describe('parseEventBody', () => {
     const provider = new BrevoEmailProvider(mockConfig);
     const messageId = provider.parseEventBody(
       { event: 'not-real-event' },
-      'test'
+      'test',
     );
     expect(messageId).toBeUndefined();
   });

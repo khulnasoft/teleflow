@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @notifire/mailjet (now @teleflow/mailjet)
 
-
-
-
-
 ## [0.2.4](https://github.com/khulnasoft/teleflow.khulnasoft.commpare/v0.2.3...v0.2.4) (2021-10-30)
 
 **Note:** Version bump only for package @notifire/mailjet (now @teleflow/mailjet)

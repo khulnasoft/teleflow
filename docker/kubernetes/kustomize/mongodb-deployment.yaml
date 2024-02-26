@@ -28,10 +28,10 @@ spec:
           name: mongodb
           ports:
             - containerPort: 27017
-          volumeMounts: 
-              - name: "mongodb-persistent-storage"
-                mountPath: "/data/db"
-      volumes: 
-          - name: "mongodb-persistent-storage"
-            persistentVolumeClaim: 
-              claimName: "teleflow-mongodb-pvc"
+          volumeMounts:
+            - name: 'mongodb-persistent-storage'
+              mountPath: '/data/db'
+      volumes:
+        - name: 'mongodb-persistent-storage'
+          persistentVolumeClaim:
+            claimName: 'teleflow-mongodb-pvc'

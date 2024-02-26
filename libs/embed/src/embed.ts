@@ -335,7 +335,8 @@ class Teleflow {
 
   runPriorCalls = () => {
     const allowedCalls: string[] = [];
-    const priorCalls = window.teleflow && window.teleflow._c && typeof window.teleflow._c === 'object' ? window.teleflow._c : [];
+    const priorCalls =
+      window.teleflow && window.teleflow._c && typeof window.teleflow._c === 'object' ? window.teleflow._c : [];
     priorCalls.forEach((call: string[]) => {
       const method: any = call[0];
       const args = call[1];
@@ -357,9 +358,8 @@ class Teleflow {
       wrapper.className = 'wrapper-teleflow-widget';
       wrapper.style.display = 'none';
       wrapper.id = WEASL_WRAPPER_ID;
-      (
-        wrapper as any
-      ).style = `z-index: ${Number.MAX_SAFE_INTEGER}; width: 0; height: 0; position: relative; display: none;`;
+      (wrapper as any).style =
+        `z-index: ${Number.MAX_SAFE_INTEGER}; width: 0; height: 0; position: relative; display: none;`;
       wrapper.appendChild(this.iframe);
       document.body.appendChild(wrapper);
     }
@@ -368,7 +368,9 @@ class Teleflow {
 
 export default ((window: any) => {
   const onloadFunc =
-    window.teleflow && window.teleflow.onload && typeof window.teleflow.onload === 'function' ? window.teleflow.onload : function () {};
+    window.teleflow && window.teleflow.onload && typeof window.teleflow.onload === 'function'
+      ? window.teleflow.onload
+      : function () {};
 
   const initCall = window.teleflow._c.find((call: string[]) => call[0] === 'init');
   const teleflowApi: any = () => {};

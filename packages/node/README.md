@@ -287,7 +287,7 @@ await teleflow.subscribers.setCredentials(
   {
     webhookUrl: ['webhookUrl'],
   },
-  'slack_identifier'
+  'slack_identifier',
 );
 ```
 
@@ -355,13 +355,13 @@ const teleflow = new Teleflow('<TELEFLOW_API_KEY>');
 // Get global level preference
 await teleflow.subscribers.getPreferenceByLevel(
   'subscriberId',
-  PreferenceLevelEnum.GLOBAL
+  PreferenceLevelEnum.GLOBAL,
 );
 
 // Get template level preference
 await teleflow.subscribers.getPreferenceByLevel(
   'subscriberId',
-  PreferenceLevelEnum.TEMPLATE
+  PreferenceLevelEnum.TEMPLATE,
 );
 ```
 
@@ -478,21 +478,25 @@ const teleflow = new Teleflow('<TELEFLOW_API_KEY>');
 await teleflow.subscribers.markAllMessagesAs(
   'subscriberId',
   MarkMessageAsEnum.SEEN,
-  'feedId'
+  'feedId',
 );
 
 // mark all messages as read
 await teleflow.subscribers.markAllMessagesAs(
   'subscriberId',
   MarkMessageAsEnum.READ,
-  'feedId'
+  'feedId',
 );
 ```
 
 - #### Mark in-app message (notification) action as seen
 
 ```ts
-import { Teleflow, ButtonTypeEnum, MessageActionStatusEnum } from '@teleflow/node';
+import {
+  Teleflow,
+  ButtonTypeEnum,
+  MessageActionStatusEnum,
+} from '@teleflow/node';
 
 const teleflow = new Teleflow('<TELEFLOW_API_KEY>');
 
@@ -503,7 +507,7 @@ await teleflow.subscribers.markMessageActionSeen(
   ButtonTypeEnum.PRIMARY,
   {
     status: MessageActionStatusEnum.PENDING,
-  }
+  },
 );
 
 // mark a message's secondary action button as done
@@ -513,7 +517,7 @@ await teleflow.subscribers.markMessageActionSeen(
   ButtonTypeEnum.SECONDARY,
   {
     status: MessageActionStatusEnum.DONE,
-  }
+  },
 );
 ```
 
@@ -1371,7 +1375,7 @@ const teleflow = new Teleflow('<TELEFLOW_API_KEY>');
 
 await teleflow.workflowOverrides.getOneByTenantIdandWorkflowId(
   'workflowId_123',
-  'tenantId_123'
+  'tenantId_123',
 );
 ```
 
@@ -1387,7 +1391,7 @@ await teleflow.workflowOverrides.updateOneByTenantIdandWorkflowId(
   'tenantId_123',
   {
     active: false,
-  }
+  },
 );
 ```
 
