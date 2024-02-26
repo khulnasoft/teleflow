@@ -19,16 +19,16 @@ export class CalculateLimitTeleflowIntegration {
 
   static MAX_TELEFLOW_INTEGRATION_MAIL_REQUESTS = parseInt(
     process.env.MAX_TELEFLOW_INTEGRATION_MAIL_REQUESTS || '300',
-    10
+    10,
   );
 
   static MAX_TELEFLOW_INTEGRATION_SMS_REQUESTS = parseInt(
     process.env.MAX_TELEFLOW_INTEGRATION_SMS_REQUESTS || '20',
-    10
+    10,
   );
 
   async execute(
-    command: CalculateLimitTeleflowIntegrationCommand
+    command: CalculateLimitTeleflowIntegrationCommand,
   ): Promise<{ limit: number; count: number } | undefined> {
     const channelType = command.channelType;
 
@@ -39,11 +39,15 @@ export class CalculateLimitTeleflowIntegration {
       return;
     }
 
-    if (channelType === ChannelTypeEnum.SMS && !areTeleflowSmsCredentialsSet()) {
+    if (
+      channelType === ChannelTypeEnum.SMS &&
+      !areTeleflowSmsCredentialsSet()
+    ) {
       return;
     }
 
-    const providerId = CalculateLimitTeleflowIntegration.getProviderId(channelType);
+    const providerId =
+      CalculateLimitTeleflowIntegration.getProviderId(channelType);
 
     if (providerId === undefined) {
       return;
@@ -63,7 +67,7 @@ export class CalculateLimitTeleflowIntegration {
           $lte: endOfMonth(new Date()),
         },
       },
-      limit
+      limit,
     );
 
     return {
