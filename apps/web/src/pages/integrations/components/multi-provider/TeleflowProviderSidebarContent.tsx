@@ -20,8 +20,8 @@ export const TeleflowProviderSidebarContent = ({ provider }: { provider: IIntegr
       <Group pt={10} pb={10} spacing={16}>
         <ErrorIcon width="26" height="26" viewBox="0 0 22 22" color={descriptionColor} />
         <Text color={descriptionColor} data-test-id="teleflow-provider-limits">
-          Teleflow provider allows sending max {limit} {provider?.channel === ChannelTypeEnum.EMAIL ? 'emails' : 'messages'}{' '}
-          per month,
+          Teleflow provider allows sending max {limit}{' '}
+          {provider?.channel === ChannelTypeEnum.EMAIL ? 'emails' : 'messages'} per month,
           <br />
           to send more messages, configure a different provider
         </Text>
