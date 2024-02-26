@@ -17,11 +17,11 @@ import { GetTeleflowProviderCredentialsCommand } from './get-teleflow-provider-c
 export class GetTeleflowProviderCredentials {
   constructor(
     private analyticsService: AnalyticsService,
-    protected calculateLimitTeleflowIntegration: CalculateLimitTeleflowIntegration
+    protected calculateLimitTeleflowIntegration: CalculateLimitTeleflowIntegration,
   ) {}
 
   async execute(
-    integration: GetTeleflowProviderCredentialsCommand
+    integration: GetTeleflowProviderCredentialsCommand,
   ): Promise<ICredentials> {
     if (
       integration.providerId === EmailProviderIdEnum.Teleflow ||
@@ -35,7 +35,7 @@ export class GetTeleflowProviderCredentials {
 
       if (!limit) {
         throw new ConflictException(
-          `Limit for Teleflow's ${integration.channelType.toLowerCase()} provider does not exists.`
+          `Limit for Teleflow's ${integration.channelType.toLowerCase()} provider does not exists.`,
         );
       }
 
@@ -49,10 +49,10 @@ export class GetTeleflowProviderCredentials {
             organizationId: integration.organizationId,
             providerId: integration.providerId,
             ...limit,
-          }
+          },
         );
         throw new ConflictException(
-          `Limit for Teleflow's ${integration.channelType.toLowerCase()} provider was reached.`
+          `Limit for Teleflow's ${integration.channelType.toLowerCase()} provider was reached.`,
         );
       }
     }
@@ -75,7 +75,7 @@ export class GetTeleflowProviderCredentials {
     }
 
     throw new NotFoundException(
-      `Credentials for Teleflow's ${integration.channelType.toLowerCase()} provider could not be found`
+      `Credentials for Teleflow's ${integration.channelType.toLowerCase()} provider could not be found`,
     );
   }
 }
