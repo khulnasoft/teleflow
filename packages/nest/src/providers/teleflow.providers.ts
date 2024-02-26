@@ -40,7 +40,7 @@ export function createTeleflowProviders(options: ITeleflowOptions): Provider[] {
 }
 
 export function createAsyncTeleflowProviders(
-  options: ITeleflowModuleAsyncOptions
+  options: ITeleflowModuleAsyncOptions,
 ): Provider[] {
   if (options.useFactory) {
     return [
